@@ -2,26 +2,13 @@ import React, { useState, useEffect } from 'react';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
-import {
-	StyleSheet,
-	Text,
-	TextInput,
-	View,
-	Button,
-	Platform,
-	StatusBar
-} from 'react-native';
-import {
-	Container,
-	Content,
-	Header,
-	Left,
-	Body,
-	Title,
-	Right
-} from 'native-base';
+import { StyleSheet, TextInput, View, Button } from 'react-native';
+import { Container, Content } from 'native-base';
 
-import Hello from './Hello';
+//import Hello from './Hello';
+
+import Head from './ui/Head';
+import Values from './ui/Values';
 
 export default function App() {
 	const [inputValue, setInputValue] = useState('');
@@ -48,29 +35,16 @@ export default function App() {
 		}
 	};
 
-	let tip = 0.0;
-	if (inputValue) {
-		tip = parseFloat(inputValue) * tipAmount;
-		tip = (Math.round(tip * 100) / 100).toFixed(2);
-	}
 	if (!isReady) {
 		return <AppLoading />;
 	}
+
 	return (
 		<Container>
-			<View style={styles.header}>
-				<Header>
-					<Left />
-					<Body>
-						<Title>Header</Title>
-					</Body>
-					<Right />
-				</Header>
-			</View>
+			<Head />
 			<Content padder>
 				<View style={styles.container}>
-					{/* <Hello /> */}
-					<Text>${tip}</Text>
+					<Values tipPercent={tipAmount} bill={inputValue} />
 					<TextInput
 						style={styles.input}
 						value={inputValue}
@@ -97,13 +71,6 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-	header: {
-		...Platform.select({
-			android: {
-				marginTop: StatusBar.currentHeight
-			}
-		})
-	},
 	container: {
 		flex: 1,
 		backgroundColor: '#fff',
