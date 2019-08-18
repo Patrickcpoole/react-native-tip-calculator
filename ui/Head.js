@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import * as Font from 'expo-font';
+import React from 'react';
 
-import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, View, StatusBar, Platform } from 'react-native';
 import { Header, Left, Body, Title, Right } from 'native-base';
 
-export default function Head() {
+const Head = () => {
 	return (
 		<View style={styles.header}>
 			<Header>
 				<Left />
 				<Body>
-					<Title>Header</Title>
+					<Title>Tip Calculator</Title>
 				</Body>
 				<Right />
 			</Header>
 		</View>
 	);
-}
+};
 
 const styles = StyleSheet.create({
 	header: {
@@ -28,3 +26,5 @@ const styles = StyleSheet.create({
 		})
 	}
 });
+
+export default Head;
